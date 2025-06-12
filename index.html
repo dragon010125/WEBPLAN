@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DRAGON WEB PLANS</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #e0faff, #f1fcff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .main-container {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+      width: 95%;
+      max-width: 980px;
+    }
+
+    .glow-text {
+      font-size: 30px;
+      font-weight: bold;
+      color: #87CEFA;
+      text-align: center;
+      margin-bottom: 20px;
+      animation: glowText 2s ease-in-out infinite;
+    }
+
+    @keyframes glowText {
+      0%, 100% { text-shadow: 0 0 10px #87CEFA; }
+      50% { text-shadow: 0 0 20px #87CEFA; }
+    }
+
+    .plans-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .plan-card {
+      flex: 1;
+      min-width: 280px;
+      background: #f0fcff;
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 8px 20px rgba(135, 206, 250, 0.2);
+      transition: transform 0.2s;
+    }
+
+    .plan-card:hover {
+      transform: scale(1.03);
+    }
+
+    .plan-title {
+      font-size: 22px;
+      font-weight: bold;
+      color: #01579b;
+      margin-bottom: 10px;
+    }
+
+    .price {
+      font-size: 18px;
+      color: #039be5;
+      margin-bottom: 15px;
+    }
+
+    .mod-info {
+      font-size: 15px;
+      color: #004d61;
+      margin-bottom: 20px;
+    }
+
+    .buy-btn {
+      padding: 12px;
+      font-size: 15px;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background: #87CEFA;
+      transition: background 0.3s;
+      width: 100%;
+    }
+
+    .buy-btn:hover {
+      background: #7ec6f2;
+    }
+
+    /* Popup */
+    .popup-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .popup-box {
+      background: white;
+      padding: 25px;
+      border-radius: 16px;
+      text-align: center;
+      max-width: 350px;
+      width: 90%;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      animation: fadeIn 0.3s ease-in-out;
+      position: relative;
+    }
+
+    .popup-box img {
+      width: 100%;
+      max-width: 200px;
+      border-radius: 12px;
+      margin-bottom: 15px;
+      border: 2px solid #b3e5fc;
+    }
+
+    .submit-utr-btn {
+      background-color: #4caf50;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 20px;
+      cursor: pointer;
+      color: #999;
+    }
+
+    @keyframes fadeIn {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="main-container">
+  <div class="glow-text">✨ DRAGON WEB PLANS ✨</div>
+
+  <div class="plans-container">
+    <div class="plan-card">
+      <div class="plan-title">3 DAYS :- ₹250</div>
+      <div class="mod-info">
+        <ol>
+          <li>Perfect for short testing</li>
+          <li>Includes basic MOD</li>
+          <li>Loss recovery support</li>
+        </ol>
+      </div>
+      <button class="buy-btn" onclick="showPopup()">BUY PLAN</button>
+    </div>
+
+    <div class="plan-card">
+      <div class="plan-title">7 DAYS :- ₹500</div>
+      <div class="mod-info">
+        <ol>
+          <li>Full 1-week access</li>
+          <li>Advanced MOD levels</li>
+          <li>Better prediction success</li>
+        </ol>
+      </div>
+      <button class="buy-btn" onclick="showPopup()">BUY PLAN</button>
+    </div>
+
+    <div class="plan-card">
+      <div class="plan-title">15 DAYS :- ₹750</div>
+      <div class="mod-info">
+        <ol>
+          <li>Max duration access</li>
+          <li>High accuracy MODs</li>
+          <li>Includes premium help</li>
+        </ol>
+      </div>
+      <button class="buy-btn" onclick="showPopup()">BUY PLAN</button>
+    </div>
+  </div>
+</div>
+
+<!-- QR Popup -->
+<div class="popup-overlay" id="popup">
+  <div class="popup-box">
+    <div class="close-btn" onclick="closePopup()">✖</div>
+    <img src="https://ik.imagekit.io/rmlbayysp/1749746151046-IMG_9201_HFVG7EdC9.jpeg" alt="QR Code" />
+    <button class="submit-utr-btn" onclick="submitUTR()">Submit UTR</button>
+  </div>
+</div>
+
+<script>
+  function showPopup() {
+    document.getElementById('popup').style.display = 'flex';
+  }
+
+  function closePopup() {
+    document.getElementById('popup').style.display = 'none';
+  }
+
+  function submitUTR() {
+    window.location.href = 'https://t.me/DRAGONMODS1';
+  }
+</script>
+
+</body>
+</html>
